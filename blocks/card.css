@@ -39,3 +39,9 @@
   height: 18px;
   align-self: center;
 }
+
+@media screen and (max-width: 615px) {
+  .card__name {
+    font-size: 24px;
+  }
+}

@@ -1,5 +1,17 @@
 .main-page {
   margin: 45px 200px 60px;
-  max-width: 880px;
+  width: 100%;
   justify-self: center;
+}
+
+@media screen and (max-width: 885px) and (min-width: 615px) {
+  .main-page {
+    margin: 45px 30px 60px;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .main-page {
+    margin: 0;
+  }
 }
