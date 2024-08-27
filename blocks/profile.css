@@ -37,8 +37,9 @@
   grid-area: description;
 }
 
-.profile__form {
-}
+/* .profile__form {
+} 
+Not used, commented for posible further uses*/
 
 .profile__form_type_edit {
   align-self: center;
@@ -48,13 +49,17 @@
   width: 24px;
   height: 24px;
   background-color: #000;
+  background-image: url(../images/EditButton.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   border: 1px solid #fff;
   grid-area: edit;
+  transition: background-image 0.5s linear, border 0.5s linear;
 }
 
-.profile__edit-image {
-  width: 10px;
-  height: 10px;
+.profile__edit-button:hover {
+  border: 1px solid #545454;
+  background-image: url(../images/EditButtonHover.svg);
 }
 
 .profile__form_type_add {
@@ -64,13 +69,17 @@
 .profile__add-button {
   width: 150px;
   height: 50px;
+  background-image: url(../images/AddButton.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: #000;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
+  transition: background-image 0.5s linear, border 0.5s linear;
 }
 
-.profile__add-image {
-  width: 22px;
-  height: 22px;
+.profile__add-button:hover {
+  border: 2px solid #545454;
+  background-image: url(../images/AddButtonHover.svg);
 }
 
 @media screen and (max-width: 885px) and (min-width: 615px) {
@@ -113,10 +122,6 @@
     justify-content: center;
     align-items: center;
   }
-  .profile__edit-image {
-    width: 7.5px;
-    height: 7.49px;
-  }
 
   .profile__form_type_add {
     margin: 0;
@@ -124,10 +129,5 @@
 
   .profile__add-button {
     width: 282px;
-  }
-
-  .profile__add-image {
-    width: 16px;
-    height: 16px;
   }
 }
