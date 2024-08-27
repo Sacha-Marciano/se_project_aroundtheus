@@ -4,19 +4,24 @@ This is my 3rd project. It combines everything I learned from the past two proje
 
 ## Updates
 
-Old to new: - "Initial commit": The files were upload to a git repo and cloned localy - "Desktop structure": HTML structure was built and styles for desktop viewport created. - "Tablet and phone browser support": Page was styled according to figma brief for phone and tablet viewports - "Self revision and README.md": Revision of the code and fixing of details, creation of the README.md file
+Old to new:
+
+- "Initial commit": The files were upload to a git repo and cloned localy
+- "Desktop structure": HTML structure was built and styles for desktop viewport created.
+- "Tablet and phone browser support": Page was styled according to figma brief for phone and tablet viewports
+- "Self revision and README.md": Revision of the code and fixing of details, creation of the README.md file
 
 ## Project description
 
 This is the unofficial page of Jacques Cousteau the famous french explorer. It showcases the most beautiful pictures of the places the adventurer went.
 The project was built from a Figma brief with the following skills:
 
--Semantic HTML
--CSS styles
--Flexbox
--Grid Layout
--Flat BEM file structure and naming
--Media queries
+- Semantic HTML
+- CSS styles
+- Flexbox
+- Grid Layout
+- Flat BEM file structure and naming
+- Media queries
 
 ## Project look
 
