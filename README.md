@@ -33,9 +33,11 @@ The project was built from a Figma brief with the following skills:
 ![site image](./images/Desktop%20view.png)
 
 **Tablet view (800px)**
+
 ![site image](./images/Tablet%20view.png)
 
 **Phone view (320px)**
+
 ![site image](./images/Mobile%20view.png)
 
 ## Instruction to deploy
