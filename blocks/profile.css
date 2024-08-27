@@ -89,6 +89,10 @@
     margin: 42px 19px 36px;
   }
 
+  .profile__image {
+    margin: 0;
+  }
+
   .profile__info {
     margin: 30px 0 32px;
   }
@@ -99,6 +103,7 @@
 
   .profile__description {
     font-size: 14px;
+    text-align: center;
   }
 
   .profile__edit-button {
@@ -121,7 +126,8 @@
     width: 282px;
   }
 
-  .profile__image {
-    margin: 0;
+  .profile__add-image {
+    width: 16px;
+    height: 16px;
   }
 }
