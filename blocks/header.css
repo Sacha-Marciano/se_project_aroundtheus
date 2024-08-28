@@ -3,14 +3,6 @@
   padding-bottom: 40px;
 }
 
-.header__logo {
-}
-
-@media screen and (max-width: 885px) and (min-width: 615px) {
-  .header {
-  }
-}
-
 @media screen and (max-width: 615px) {
   .header {
     padding: 28px 0 32px 27px;

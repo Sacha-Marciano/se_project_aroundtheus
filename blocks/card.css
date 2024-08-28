@@ -35,19 +35,21 @@
   overflow: hidden;
 }
 
-.card__like {
+.card__like-button {
+  background-color: transparent;
+  background-image: url(../images/Like.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  padding: 0;
   width: 21px;
   height: 18px;
   align-self: center;
   transition: opacity 0.5s linear;
+  cursor: pointer;
 }
 
-.card__like:hover {
+.card__like-button:hover {
   opacity: 0.5;
-}
-
-@media screen and (max-width: 615px) {
-  .card__name {
-    font-size: 24px;
-  }
 }
