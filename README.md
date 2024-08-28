@@ -10,6 +10,9 @@ Old to new:
 - "Desktop structure": HTML structure was built and styles for desktop viewport created.
 - "Tablet and phone browser support": Page was styled according to figma brief for phone and tablet viewports
 - "Self revision and README.md": Revision of the code and fixing of details, creation of the README.md file
+- "Like button hover fix": fix of the button when hovered
+- "Fixes after review": Implemented all of reviewer corrections
+- "README.md update and video add" : Made a few corrections and added the link of the video to the README.md
 
 ## Project description
 
@@ -22,6 +25,10 @@ The project was built from a Figma brief with the following skills:
 - Grid Layout
 - Flat BEM file structure and naming
 - Media queries
+
+[![Video Website](https://img.youtube.com/vi/rsA7WrYDE7s/0.jpg)](https://www.youtube.com/watch?v=rsA7WrYDE7s)
+
+- [Here is a link to the explanatory video](https://www.youtube.com/watch?v=rsA7WrYDE7s)
 
 ## Project look
 
