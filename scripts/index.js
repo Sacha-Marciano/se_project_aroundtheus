@@ -30,9 +30,19 @@ const initialCards = [
   },
 ];
 
-let buttonEdit = document.querySelector(".profile__button_type_edit");
-let buttonClose = document.querySelector(".modal__button_type_close");
-let modal = document.querySelector(".modal");
+const buttonEdit = document.querySelector(".profile__button_type_edit");
+const buttonClose = document.querySelector(".modal__button_type_close");
+const modal = document.querySelector(".modal");
+
+const profileFormElement = document.querySelector(".modal__container");
+
+let profileName = document.querySelector(".profile__name");
+let profileDescription = document.querySelector(".profile__description");
+
+let nameInput = document.querySelector(".modal__input_type_name");
+let descriptionInput = document.querySelector(".modal__input_type_description");
+
+let cardsList = document.querySelector(".cards__list");
 
 function openModal() {
   modal.classList.add("modal_opened");
@@ -42,5 +52,37 @@ function closeModal() {
   modal.classList.remove("modal_opened");
 }
 
+function setInputValue() {
+  nameInput.value = `${profileName.textContent}`;
+  descriptionInput.value = `${profileDescription.textContent}`;
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = `${nameInput.value}`;
+  profileDescription.textContent = `${descriptionInput.value}`;
+  closeModal();
+  setInputValue();
+}
+
+function getCardElement(data) {
+  let cardTemplate = document.querySelector("#card__template").content;
+  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  let cardImageElement = cardElement.querySelector(".card__image");
+  let cardNameElement = cardElement.querySelector(".card__name");
+  cardImageElement.alt = data.name;
+  cardImageElement.src = data.link;
+  cardNameElement.textContent = data.name;
+  return cardElement;
+}
+
+setInputValue();
+
 buttonEdit.addEventListener("click", openModal);
 buttonClose.addEventListener("click", closeModal);
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+
+for (i = initialCards.length - 1; i >= 0; i--) {
+  cardsList.prepend(getCardElement(initialCards[i]));
+}

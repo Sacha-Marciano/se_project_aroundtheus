@@ -44,6 +44,17 @@
         </section>
         <section class="cards">
           <ul class="cards__list">
+            <template id="card__template">
+              <li class="card">
+                <img src="" class="card__image" />
+                <div class="card__description">
+                  <h2 class="card__name"></h2>
+                  <button type="button" class="card__like-button"></button>
+                </div>
+              </li>
+            </template>
+          </ul>
+          <!-- <ul class="cards__list">
             <li class="card">
               <img
                 src="./images/yosemite.jpg"
@@ -110,7 +121,7 @@
                 <button type="button" class="card__like-button"></button>
               </div>
             </li>
-          </ul>
+          </ul> -->
         </section>
       </main>
       <footer class="footer">
@@ -129,7 +140,7 @@
           <input
             id="name-id"
             type="text"
-            class="modal__input"
+            class="modal__input modal__input_type_name"
             placeholder="Name"
             name="name"
             required
@@ -140,7 +151,7 @@
           <input
             id="aboutMe-id"
             type="text"
-            class="modal__input"
+            class="modal__input modal__input_type_description"
             placeholder="Description"
             name="about me"
           />
