@@ -35,9 +35,6 @@
   margin: 0 0 30px;
 }
 
-.modal__label {
-}
-
 .modal__input {
   border: 0;
   font-size: 14px;
@@ -61,7 +58,7 @@
 
 .modal__button_type_submit {
   margin: 18px 0 0;
-  padding: 14px 0 18px;
+  padding: 14px 0;
   border: 0;
   color: #fff;
   background-color: #000;
@@ -80,10 +77,12 @@
   }
 
   .modal__title {
+    font-size: 18px;
     margin: 0 0 76px;
   }
 
   .modal__button_type_submit {
+    font-size: 14px;
     margin: 16px 0 0;
   }
 

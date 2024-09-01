@@ -4,8 +4,6 @@
   background-color: #fff;
   color: #000;
   border-radius: 10px;
-  /*Figma file shows radius: 10px 10px 0px 0px 
-  but it does not seem like the design so I choosed design over instructions*/
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

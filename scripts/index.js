@@ -36,13 +36,15 @@ const modal = document.querySelector(".modal");
 
 const profileFormElement = document.querySelector(".modal__container");
 
-let profileName = document.querySelector(".profile__name");
-let profileDescription = document.querySelector(".profile__description");
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
 
-let nameInput = document.querySelector(".modal__input_type_name");
-let descriptionInput = document.querySelector(".modal__input_type_description");
+const nameInput = document.querySelector("[name='name']");
+const descriptionInput = document.querySelector("[name='about me']");
 
-let cardsList = document.querySelector(".cards__list");
+const cardsList = document.querySelector(".cards__list");
+
+const cardTemplate = document.querySelector("#card__template").content;
 
 function openModal() {
   modal.classList.add("modal_opened");
@@ -67,10 +69,9 @@ function handleProfileFormSubmit(evt) {
 }
 
 function getCardElement(data) {
-  let cardTemplate = document.querySelector("#card__template").content;
-  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  let cardImageElement = cardElement.querySelector(".card__image");
-  let cardNameElement = cardElement.querySelector(".card__name");
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImageElement = cardElement.querySelector(".card__image");
+  const cardNameElement = cardElement.querySelector(".card__name");
   cardImageElement.alt = data.name;
   cardImageElement.src = data.link;
   cardNameElement.textContent = data.name;
