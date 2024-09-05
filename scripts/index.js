@@ -53,6 +53,13 @@ const profileAddForm = document.querySelector("#add-container-id");
 const placeInput = document.querySelector("[name='place']");
 const imageLinkInput = document.querySelector("[name='image link']");
 
+//Setting image modal variables
+const imageModal = document.querySelector("#image-modal-id");
+const buttonCloseImage = document.querySelector("#close-image-id");
+
+const modalPicture = document.querySelector(".modal__image");
+const modalTitle = document.querySelector(".modal__image-title");
+
 //Setting card elements
 const cardsList = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card__template").content;
@@ -72,6 +79,14 @@ function openAddModal() {
 
 function closeAddModal() {
   modalAdd.classList.remove("modal_opened");
+}
+
+function openImageModal() {
+  imageModal.classList.add("modal_opened");
+}
+
+function closeImageModal() {
+  imageModal.classList.remove("modal_opened");
 }
 
 //Inputs function
@@ -115,6 +130,27 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function handleCardClicked(evt) {
+  const target = evt.target;
+  if (target.classList.contains("card__like-button")) {
+    target.classList.toggle("card__like-button_liked");
+  } else if (target.classList.contains("card__delete-button")) {
+    const deletedCard = target.parentElement;
+    deletedCard.remove();
+  } else if (target.classList.contains("card__image")) {
+    getImage(target.src, target.alt);
+    openImageModal();
+  }
+}
+
+function getImage(src, alt) {
+  console.log(src);
+  console.log(alt);
+  modalPicture.setAttribute("src", `${src}`);
+  modalPicture.setAttribute("alt", `${alt}`);
+  modalTitle.textContent = alt;
+}
+
 //When starting or refreshing
 initialCards.forEach(function (object) {
   cardsList.append(getCardElement(object));
@@ -130,9 +166,6 @@ buttonAdd.addEventListener("click", openAddModal);
 buttonCloseAdd.addEventListener("click", closeAddModal);
 profileAddForm.addEventListener("submit", handleAddFormSubmit);
 
-//Working space
+cardsList.addEventListener("click", handleCardClicked);
 
-cardsList.addEventListener("click", function (evt) {
-  const buttonLiked = evt.target;
-  buttonLiked.classList.toggle("card__like-button_liked");
-});
+buttonCloseImage.addEventListener("click", closeImageModal);
