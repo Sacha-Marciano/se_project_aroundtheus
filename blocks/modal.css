@@ -3,14 +3,19 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
   justify-content: center;
   align-items: center;
   font-family: "Inter", Arial, serif;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
 }
 
 .modal_opened {
   display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {

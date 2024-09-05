@@ -130,6 +130,7 @@ function getCardElement(data) {
   return cardElement;
 }
 
+//Deciding what action to do with the card depending on the target
 function handleCardClicked(evt) {
   const target = evt.target;
   if (target.classList.contains("card__like-button")) {
@@ -143,6 +144,7 @@ function handleCardClicked(evt) {
   }
 }
 
+// Get image source for image modal
 function getImage(src, alt) {
   console.log(src);
   console.log(alt);

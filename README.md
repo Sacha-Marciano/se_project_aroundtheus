@@ -13,6 +13,11 @@ Old to new:
 - "Like button hover fix": fix of the button when hovered
 - "Fixes after review": Implemented all of reviewer corrections
 - "README.md update and video add" : Made a few corrections and added the link of the video to the README.md
+- "JavaScript first implementation !": Implemented my first JavaScript code : render an array of cards
+- "Final stage submission": Added a popup window and make it open/close with a click
+- "Feature Add and like cards": Now able to add cards with any name or URL and like them
+- "Feature: Delete button and image modal": Now you can delete cards (even the initial ones !) and a click on the image will show it to its original size
+- "Revision before submit and README": Fixes before submit and updated this README
 
 ## Project description
 
