@@ -32,7 +32,6 @@ const initialCards = [
 
 // Setting "edit profile" variables
 const buttonEdit = document.querySelector(".profile__button_type_edit");
-const buttonCloseEdit = document.querySelector("#close-edit-id");
 const modalEdit = document.querySelector("#edit-modal-id");
 
 const profileEditForm = document.querySelector("#edit-container-id");
@@ -46,77 +45,54 @@ const descriptionInput = document.querySelector("[name='about me']");
 // Setting "add image" variables
 const buttonAdd = document.querySelector(".profile__button_type_add");
 const modalAdd = document.querySelector("#add-modal-id");
-const buttonCloseAdd = document.querySelector("#close-add-id");
 
 const profileAddForm = document.querySelector("#add-container-id");
 
-const placeInput = document.querySelector("[name='place']");
+const placeNameInput = document.querySelector("[name='place']");
 const imageLinkInput = document.querySelector("[name='image link']");
 
 //Setting image modal variables
-const imageModal = document.querySelector("#image-modal-id");
-const buttonCloseImage = document.querySelector("#close-image-id");
+const modalImage = document.querySelector("#image-modal-id");
 
-const modalPicture = document.querySelector(".modal__image");
+const modalSelectedImage = document.querySelector(".modal__image");
 const modalTitle = document.querySelector(".modal__image-title");
 
-//Setting card elements
+//Selecting all close buttons
+const closeButtons = document.querySelectorAll(".modal__button_type_close");
+
+//Setting cards variables
 const cardsList = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card__template").content;
 
 //Open and close modals
-function openEditModal() {
-  modalEdit.classList.add("modal_opened");
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
 }
 
-function closeEditModal() {
-  modalEdit.classList.remove("modal_opened");
-}
-
-function openAddModal() {
-  modalAdd.classList.add("modal_opened");
-}
-
-function closeAddModal() {
-  modalAdd.classList.remove("modal_opened");
-}
-
-function openImageModal() {
-  imageModal.classList.add("modal_opened");
-}
-
-function closeImageModal() {
-  imageModal.classList.remove("modal_opened");
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
 }
 
 //Inputs function
-function setInputValue() {
+function fillProfileInputs() {
   nameInput.value = `${profileName.textContent}`;
   descriptionInput.value = `${profileDescription.textContent}`;
-  placeInput.value = "";
-  imageLinkInput.value = "";
 }
 
 //Submit buttons functions
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-
   profileName.textContent = `${nameInput.value}`;
   profileDescription.textContent = `${descriptionInput.value}`;
-  closeEditModal();
-  setInputValue();
+  closePopup(modalEdit);
 }
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-
-  initialCards.push({ name: placeInput.value, link: imageLinkInput.value });
-  const newCard = initialCards[initialCards.length - 1];
-  console.log(newCard);
+  const newCard = { name: placeNameInput.value, link: imageLinkInput.value };
   cardsList.prepend(getCardElement(newCard));
-
-  closeAddModal();
-  setInputValue();
+  evt.target.reset();
+  closePopup(modalAdd);
 }
 
 //Using the template
@@ -124,32 +100,38 @@ function getCardElement(data) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardNameElement = cardElement.querySelector(".card__name");
+  const cardLikeElement = cardElement.querySelector(".card__like-button");
+  const cardTrashElement = cardElement.querySelector(".card__delete-button");
   cardImageElement.alt = data.name;
   cardImageElement.src = data.link;
   cardNameElement.textContent = data.name;
+  cardLikeElement.addEventListener("click", toggleLike);
+  cardTrashElement.addEventListener("click", deleteCard);
+  cardImageElement.addEventListener("click", growImage);
+
   return cardElement;
 }
 
-//Deciding what action to do with the card depending on the target
-function handleCardClicked(evt) {
+function toggleLike(evt) {
   const target = evt.target;
-  if (target.classList.contains("card__like-button")) {
-    target.classList.toggle("card__like-button_liked");
-  } else if (target.classList.contains("card__delete-button")) {
-    const deletedCard = target.parentElement;
-    deletedCard.remove();
-  } else if (target.classList.contains("card__image")) {
-    getImage(target.src, target.alt);
-    openImageModal();
-  }
+  target.classList.toggle("card__like-button_liked");
+}
+
+function deleteCard(evt) {
+  const deletedCard = evt.target.parentElement;
+  deletedCard.remove();
+}
+
+function growImage(evt) {
+  const target = evt.target;
+  getImage(target.src, target.alt);
+  openPopup(modalImage);
 }
 
 // Get image source for image modal
 function getImage(src, alt) {
-  console.log(src);
-  console.log(alt);
-  modalPicture.setAttribute("src", `${src}`);
-  modalPicture.setAttribute("alt", `${alt}`);
+  modalSelectedImage.setAttribute("src", `${src}`);
+  modalSelectedImage.setAttribute("alt", `${alt}`);
   modalTitle.textContent = alt;
 }
 
@@ -157,17 +139,18 @@ function getImage(src, alt) {
 initialCards.forEach(function (object) {
   cardsList.append(getCardElement(object));
 });
-setInputValue();
 
 //Events listeners
-buttonEdit.addEventListener("click", openEditModal);
-buttonCloseEdit.addEventListener("click", closeEditModal);
+buttonEdit.addEventListener("click", () => {
+  openPopup(modalEdit);
+  fillProfileInputs();
+});
 profileEditForm.addEventListener("submit", handleEditFormSubmit);
 
-buttonAdd.addEventListener("click", openAddModal);
-buttonCloseAdd.addEventListener("click", closeAddModal);
+buttonAdd.addEventListener("click", () => openPopup(modalAdd));
 profileAddForm.addEventListener("submit", handleAddFormSubmit);
 
-cardsList.addEventListener("click", handleCardClicked);
-
-buttonCloseImage.addEventListener("click", closeImageModal);
+closeButtons.forEach((item) => {
+  const popup = item.closest(".modal");
+  item.addEventListener("click", () => closePopup(popup));
+});
