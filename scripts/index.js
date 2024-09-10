@@ -73,6 +73,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  popup.removeEventListener("click", closeIfClick);
   window.removeEventListener("keyup", closeIfEsc);
 }
 
@@ -84,8 +85,8 @@ function closeIfClick(evt) {
 }
 
 function closeIfEsc(evt) {
-  const popup = document.querySelector(".modal_opened");
   if (evt.key === "Escape") {
+    const popup = document.querySelector(".modal_opened");
     closePopup(popup);
   }
 }
