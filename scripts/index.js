@@ -67,10 +67,27 @@ const cardTemplate = document.querySelector("#card__template").content;
 //Open and close modals
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  popup.addEventListener("click", closeIfClick);
+  window.addEventListener("keyup", closeIfEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  window.removeEventListener("keyup", closeIfEsc);
+}
+
+function closeIfClick(evt) {
+  const target = evt.target;
+  if (target.classList.contains("modal_opened")) {
+    closePopup(target);
+  }
+}
+
+function closeIfEsc(evt) {
+  const popup = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
 }
 
 //Inputs function
