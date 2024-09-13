@@ -4,9 +4,9 @@ import { Card, initialCards } from "../components/Card.js";
 
 // Setting "edit profile" variables
 const buttonEdit = document.querySelector(".profile__button_type_edit");
-const modalEdit = document.querySelector("#edit-modal-id");
+const modalEditElement = document.querySelector("#edit-modal-id");
 
-const profileEditForm = document.querySelector("#edit-container-id");
+const profileEditForm = document.forms["edit-container"];
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -16,9 +16,9 @@ const descriptionInput = document.querySelector("[name='about me']");
 
 // Setting "add image" variables
 const buttonAdd = document.querySelector(".profile__button_type_add");
-const modalAdd = document.querySelector("#add-modal-id");
+const modalAddElement = document.querySelector("#add-modal-id");
 
-const profileAddForm = document.querySelector("#add-container-id");
+const profileAddForm = document.forms["add-container"];
 
 const placeNameInput = document.querySelector("[name='place']");
 const imageLinkInput = document.querySelector("[name='image link']");
@@ -45,8 +45,9 @@ const settings = {
   errorClass: "modal__input-error",
 };
 
-const formEdit = new FormValidator(settings, modalEdit);
-const formAdd = new FormValidator(settings, modalAdd);
+//Setting validators
+const formEditValidator = new FormValidator(settings, profileEditForm);
+const formAddValidator = new FormValidator(settings, profileAddForm);
 
 //Open and close modals
 function openPopup(popup) {
@@ -79,6 +80,7 @@ function closeIfEsc(evt) {
 function fillProfileInputs() {
   nameInput.value = `${profileName.textContent}`;
   descriptionInput.value = `${profileDescription.textContent}`;
+  formEditValidator.disableButton();
 }
 
 //Submit buttons functions
@@ -86,25 +88,36 @@ function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = `${nameInput.value}`;
   profileDescription.textContent = `${descriptionInput.value}`;
-  closePopup(modalEdit);
-  fillProfileInputs();
+  closePopup(modalEditElement);
 }
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const data = { name: placeNameInput.value, link: imageLinkInput.value };
-  const newCard = new Card(data, "#card__template", handleImageClick);
-  cardsList.prepend(newCard.renderCard());
+  renderCard(data, "prepend");
   evt.target.reset();
-  closePopup(modalAdd);
+  closePopup(modalAddElement);
+  formAddValidator.disableButton();
 }
 
+//Render initial and new cards
+function renderCard(item, method = "append") {
+  const cardElement = createCard(item);
+  cardsList[method](cardElement);
+}
+
+//Create card with class
+function createCard(item) {
+  const cardElement = new Card(item, "#card__template", handleImageClick);
+  return cardElement.renderCard();
+}
+
+//Handler for image event listener
 function handleImageClick(object) {
   getImage(object._link, object._name);
   openPopup(modalImage);
 }
 
-// Get image source for image modal
 function getImage(src, alt) {
   modalSelectedImage.setAttribute("src", `${src}`);
   modalSelectedImage.setAttribute("alt", `${alt}`);
@@ -114,17 +127,11 @@ function getImage(src, alt) {
 //Events listeners
 buttonEdit.addEventListener("click", () => {
   fillProfileInputs();
-  formEdit.resetButton();
-  formEdit.enableValidation();
-  openPopup(modalEdit);
+  openPopup(modalEditElement);
 });
 profileEditForm.addEventListener("submit", handleEditFormSubmit);
 
-buttonAdd.addEventListener("click", () => {
-  formAdd.resetButton();
-  formAdd.enableValidation();
-  openPopup(modalAdd);
-});
+buttonAdd.addEventListener("click", () => openPopup(modalAddElement));
 profileAddForm.addEventListener("submit", handleAddFormSubmit);
 
 closeButtons.forEach((item) => {
@@ -133,10 +140,7 @@ closeButtons.forEach((item) => {
 });
 
 //When starting or refreshing
-initialCards.forEach((item) => {
-  const card = new Card(item, "#card__template", handleImageClick);
-  cardsList.append(card.renderCard());
-});
+initialCards.forEach((item) => renderCard(item));
 
-//Exports
-export { handleImageClick, modalEdit, modalAdd };
+formEditValidator.enableValidation();
+formAddValidator.enableValidation();
