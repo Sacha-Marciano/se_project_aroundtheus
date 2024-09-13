@@ -96,12 +96,3 @@ class FormValidator {
 }
 
 export { FormValidator };
-
-// export const formEdit = new FormValidator(
-//   settings,
-//   document.querySelector("#edit-modal-id")
-// );
-// export const formAdd = new FormValidator(
-//   settings,
-//   document.querySelector("#add-modal-id")
-// );
