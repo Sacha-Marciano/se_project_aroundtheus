@@ -65,6 +65,4 @@ Best experience on Chrome browser
 
 ## Plan on improving project
 
-- Make a video about the project after being reviewed
-- Add javascript in the next sprints
-- Optimization for firefox and safari
+-Add back-end
