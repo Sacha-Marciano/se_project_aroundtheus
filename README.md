@@ -18,6 +18,9 @@ Old to new:
 - "Feature Add and like cards": Now able to add cards with any name or URL and like them
 - "Feature: Delete button and image modal": Now you can delete cards (even the initial ones !) and a click on the image will show it to its original size
 - "Revision before submit and README": Fixes before submit and updated this README
+- "OOP refining": Create and use classes for the first time !
+- "Fixes after review": fixes after project 7 review
+- "OOP part 2 and README": Added more classes.Now my index.js is way shorter and more readable, updated this README"
 
 ## Project description
 
