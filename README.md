@@ -46,7 +46,7 @@ The project was built from a Figma brief with the following skills:
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 **Desktop view (1280px)**
-![site image](./images/Desktop%20view.png)
+![site image]("<%=require(./images/Desktop%20view.png)%>)
 
 **Tablet view (800px)**
 
