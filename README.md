@@ -21,6 +21,7 @@ Old to new:
 - "OOP refining": Create and use classes for the first time !
 - "Fixes after review": fixes after project 7 review
 - "OOP part 2 and README": Added more classes.Now my index.js is way shorter and more readable, updated this README"
+- "Webpack implementation": Build, bundle and transcompile using webpack and plugins.
 
 ## Project description
 

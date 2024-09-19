@@ -10,14 +10,12 @@
       name="keywords"
       content="jacques cousteau explorer adventure landscape"
     />
-    <link rel="icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="body">
     <div class="main-page">
       <header class="header">
         <img
-          src="./images/LogoWhite.svg"
+          src='<%= require("./images/LogoWhite.svg")%>'
           alt="Around the US logo"
           class="header__logo"
         />
@@ -25,7 +23,7 @@
       <main class="content">
         <section class="profile">
           <img
-            src="./images/Jaques_image.svg"
+            src='<%= require("./images/Jaques_image.svg")%>'
             alt="Jacques Cousteau image"
             class="profile__image"
           />
@@ -178,6 +176,5 @@
         <p class="modal__image-title"></p>
       </div>
     </div>
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
