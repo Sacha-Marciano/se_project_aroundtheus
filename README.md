@@ -1,3 +1,5 @@
+- [Link to the page](https://sacha-marciano.github.io/se_project_aroundtheus/)
+
 # Project 3: Around The U.S.
 
 This is my 3rd project. It combines everything I learned from the past two projects and is the first project I build entirely from scratch (and a figma brief)
@@ -45,24 +47,13 @@ The project was built from a Figma brief with the following skills:
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
-**Desktop view (1280px)**
-![site image](./images/Desktop%20view.png)
-
-**Tablet view (800px)**
-
-![site image](./images/Tablet%20view.png)
-
-**Phone view (320px)**
-
-![site image](./images/Mobile%20view.png)
 
 ## Instruction to deploy
 
-- [Link to the page](https://sacha-marciano.github.io/se_project_aroundtheus/)
-
 The page is supported by all viewports
+The page is supported by all browsers
 Best experience on Chrome browser
-
+- [Link to the page](https://sacha-marciano.github.io/se_project_aroundtheus/)
 ## Plan on improving project
 
 -Add back-end
