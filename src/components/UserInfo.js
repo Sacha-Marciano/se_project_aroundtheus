@@ -7,13 +7,13 @@ class UserInfo {
   getUserInfo() {
     return {
       name: this._name.textContent,
-      description: this._description.textContent,
+      about: this._description.textContent,
     };
   }
 
   setUserInfo(data) {
     this._name.textContent = data.name;
-    this._description.textContent = data.description;
+    this._description.textContent = data.about;
   }
 }
 
