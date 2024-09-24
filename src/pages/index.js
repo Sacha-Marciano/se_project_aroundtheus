@@ -67,30 +67,39 @@ function handleImageClick(data) {
 function handleEditSumbit(obj) {
   popupEdit.renderLoading(true);
   userInfo.setUserInfo(obj);
-  formEditValidator.disableButton();
-  api.updateCurrentUser(
-    JSON.stringify({
-      name: obj.name,
-      about: obj.about,
-    })
-  );
-  popupEdit.renderLoading(false);
-  popupEdit.close();
+  api
+    .updateCurrentUser(
+      JSON.stringify({
+        name: obj.name,
+        about: obj.about,
+      })
+    )
+    .then(() => {
+      popupEdit.close();
+      popupEdit.renderLoading(false);
+      formEditValidator.disableButton();
+    });
 }
 
 function handleAddSumbit(obj) {
   popupAdd.renderLoading(true);
-  sectionCard.addItem(obj, "prepend");
-  api.postCard(
-    JSON.stringify({
-      name: obj.name,
-      link: obj.link,
+  api
+    .postCard(
+      JSON.stringify({
+        name: obj.name,
+        link: obj.link,
+      })
+    )
+    .then((data) => {
+      sectionCard.addItem(data, "prepend");
     })
-  );
-  popupAdd.renderLoading(false);
-  popupAdd.close();
-  popupAdd.form.reset();
-  formAddValidator.disableButton();
+    .then(() => {
+      setTimeout(10000);
+      popupAdd.close();
+      popupAdd.renderLoading(false);
+      popupAdd.form.reset();
+      formAddValidator.disableButton();
+    });
 }
 
 function handleDeleteClick(thisCard) {
@@ -105,16 +114,19 @@ function handleDeleteSubmit(thisCard) {
 }
 
 function handleAvatarSubmit(obj) {
-  popupAvatar.renderLoading(false);
+  popupAvatar.renderLoading(true);
   avatar.src = obj.link;
-  api.updateCurrentAvatar(
-    JSON.stringify({
-      avatar: obj.link,
-    })
-  );
-  popupAvatar.renderLoading(false);
-  popupAvatar.close();
-  popupAvatar.form.reset();
+  api
+    .updateCurrentAvatar(
+      JSON.stringify({
+        avatar: obj.link,
+      })
+    )
+    .then(() => {
+      popupAvatar.close();
+      popupAvatar.renderLoading(false);
+      popupAvatar.form.reset();
+    });
 }
 
 //Check state of isLiked in the server and toggle like state in the API
