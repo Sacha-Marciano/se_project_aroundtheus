@@ -11,19 +11,24 @@ class Api {
     });
   }
 
-  updateCurrentUser(body) {
+  updateCurrentUser(obj) {
     return this._request(`${this._baseURL}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: body,
+      body: JSON.stringify({
+        name: obj.name,
+        about: obj.about,
+      }),
     });
   }
 
-  updateCurrentAvatar(body) {
+  updateCurrentAvatar(obj) {
     return this._request(`${this._baseURL}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: body,
+      body: JSON.stringify({
+        avatar: obj.link,
+      }),
     });
   }
 
@@ -34,11 +39,14 @@ class Api {
     });
   }
 
-  postCard(body) {
+  postCard(obj) {
     return this._request(`${this._baseURL}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: body,
+      body: JSON.stringify({
+        name: obj.name,
+        link: obj.link,
+      }),
     });
   }
 

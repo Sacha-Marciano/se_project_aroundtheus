@@ -4,8 +4,11 @@ class Section {
     this._renderer = renderer;
   }
 
-  renderItems(item) {
-    return this._renderer(item);
+  renderItems(items) {
+    items.forEach((item) => {
+      const element = this._renderer(item);
+      this.addItem(element);
+    });
   }
 
   addItem(element, method = "append") {

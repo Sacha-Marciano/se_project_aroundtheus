@@ -63,87 +63,67 @@ function handleImageClick(data) {
   popupImage.open(data);
 }
 
-function handleEditSumbit(obj) {
-  popupEdit.renderLoading(true);
-  api
-    .updateCurrentUser(
-      JSON.stringify({
-        name: obj.name,
-        about: obj.about,
-      })
-    )
-    .then((res) => {
-      userInfo.setUserInfo(res);
-      popupEdit.close();
-      formEditValidator.disableButton();
+function handleSubmits(request, popup, loadingText = "Saving...") {
+  popup.renderLoading(true, loadingText);
+  request()
+    .then(() => {
+      popup.close();
     })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => {
-      popupEdit.renderLoading(false);
+      popup.renderLoading(false);
     });
+}
+
+function handleEditSumbit(obj) {
+  function makeRequest() {
+    return api.updateCurrentUser(obj).then((data) => {
+      userInfo.setUserInfo(data);
+      formEditValidator.disableButton();
+    });
+  }
+
+  handleSubmits(makeRequest, popupEdit);
 }
 
 function handleAddSumbit(obj) {
-  popupAdd.renderLoading(true);
-  api
-    .postCard(
-      JSON.stringify({
-        name: obj.name,
-        link: obj.link,
-      })
-    )
-    .then((data) => {
-      sectionCard.addItem(sectionCard.renderItems(data), "prepend");
-      popupAdd.close();
+  function makeRequest() {
+    return api.postCard(obj).then((data) => {
+      sectionCard.addItem(createCard(data), "prepend");
       popupAdd.form.reset();
       formAddValidator.disableButton();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      popupEdit.renderLoading(false);
     });
-}
+  }
 
-function handleDeleteClick(thisCard) {
-  popupDelete.getCardInfo(thisCard);
-  popupDelete.open();
+  handleSubmits(makeRequest, popupAdd);
 }
 
 function handleDeleteSubmit(thisCard) {
-  api
-    .deleteCard(thisCard.id)
-    .then(() => {
+  function makeRequest() {
+    return api.deleteCard(thisCard.id).then(() => {
       thisCard.deleteCard();
-      popupDelete.close();
-    })
-    .catch((err) => {
-      console.log(err);
     });
+  }
+
+  handleSubmits(makeRequest, popupDelete);
 }
 
 function handleAvatarSubmit(obj) {
-  popupAvatar.renderLoading(true);
-  api
-    .updateCurrentAvatar(
-      JSON.stringify({
-        avatar: obj.link,
-      })
-    )
-    .then((res) => {
-      userInfo.setUserInfo(res);
-      popupAvatar.close();
+  function makeRequest() {
+    return api.updateCurrentAvatar(obj).then((data) => {
+      userInfo.setUserInfo(data);
       popupAvatar.form.reset();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      popupAvatar.renderLoading(false);
+      formAvatarValidator.disableButton();
     });
+  }
+
+  handleSubmits(makeRequest, popupAvatar);
+}
+
+//Sends click event card's data to popupDelete
+function handleDeleteClick(thisCard) {
+  popupDelete.getCardInfo(thisCard);
+  popupDelete.open();
 }
 
 //Check state of isLiked in the server and toggle like state in the API
@@ -184,9 +164,7 @@ api
   .getInitialData()
   .then(([userProfile, userCards]) => {
     userInfo.setUserInfo(userProfile);
-    userCards.forEach((item) => {
-      sectionCard.addItem(sectionCard.renderItems(item));
-    });
+    sectionCard.renderItems(userCards);
   })
   .catch((err) => {
     console.log(err);

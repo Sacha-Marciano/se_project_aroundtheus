@@ -26,9 +26,9 @@ class PopupWithForm extends Popup {
     super.setEventListeners();
   }
 
-  renderLoading(isLoading) {
+  renderLoading(isLoading, loadingText) {
     if (isLoading) {
-      this._submitButton.textContent = "Saving...";
+      this._submitButton.textContent = loadingText;
     } else {
       this._submitButton.textContent = this._originalText;
     }
