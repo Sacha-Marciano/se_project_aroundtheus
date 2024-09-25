@@ -4,8 +4,12 @@ class Section {
     this._renderer = renderer;
   }
 
+  renderItems(item) {
+    return this._renderer(item);
+  }
+
   addItem(element, method = "append") {
-    this._container[method](this._renderer(element));
+    this._container[method](element);
   }
 }
 

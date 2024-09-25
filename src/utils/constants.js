@@ -1,7 +1,7 @@
 const userSettings = {
   nameSelector: ".profile__name",
   descriptionSelector: ".profile__description",
-  avatarSelector: ".",
+  avatarSelector: ".profile__image",
 };
 
 const validationSettings = {

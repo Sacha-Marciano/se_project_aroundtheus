@@ -8,8 +8,8 @@ class Card {
   ) {
     this._name = data.name;
     this._link = data.link;
-    this._id = data._id;
-    this._isLiked = data.isLiked;
+    this.id = data._id;
+    this.isLiked = data.isLiked;
     this._template = cardSelector;
     this._handleImageClick = handleImageClick;
     this._newCard = document
@@ -33,7 +33,7 @@ class Card {
     this._cardNameElement.textContent = this._name;
 
     this._setEventListeners();
-    this._toggleLike();
+    this.toggleLike();
     return this._newCard;
   }
 
@@ -45,7 +45,6 @@ class Card {
     this._cardLikeElement.addEventListener("click", (evt) => {
       evt.stopPropagation();
       this._toggleServerLike(this);
-      this._toggleLike();
     });
 
     this._cardTrashElement.addEventListener("click", (evt) => {
@@ -54,8 +53,8 @@ class Card {
     });
   }
 
-  _toggleLike() {
-    if (this._isLiked) {
+  toggleLike() {
+    if (this.isLiked) {
       this._cardLikeElement.classList.add("card__like-button_liked");
     } else {
       this._cardLikeElement.classList.remove("card__like-button_liked");

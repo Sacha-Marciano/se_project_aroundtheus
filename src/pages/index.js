@@ -24,7 +24,6 @@ const api = new Api({
 //Selecting elements
 const buttonEdit = document.querySelector(".profile__button_type_edit");
 const buttonAdd = document.querySelector(".profile__button_type_add");
-const avatar = document.querySelector(".profile__image");
 const avatarEdit = document.querySelector(".image__container");
 
 //Create sectionCard class
@@ -66,7 +65,6 @@ function handleImageClick(data) {
 
 function handleEditSumbit(obj) {
   popupEdit.renderLoading(true);
-  userInfo.setUserInfo(obj);
   api
     .updateCurrentUser(
       JSON.stringify({
@@ -74,10 +72,16 @@ function handleEditSumbit(obj) {
         about: obj.about,
       })
     )
-    .then(() => {
+    .then((res) => {
+      userInfo.setUserInfo(res);
       popupEdit.close();
-      popupEdit.renderLoading(false);
       formEditValidator.disableButton();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupEdit.renderLoading(false);
     });
 }
 
@@ -91,14 +95,16 @@ function handleAddSumbit(obj) {
       })
     )
     .then((data) => {
-      sectionCard.addItem(data, "prepend");
-    })
-    .then(() => {
-      setTimeout(10000);
+      sectionCard.addItem(sectionCard.renderItems(data), "prepend");
       popupAdd.close();
-      popupAdd.renderLoading(false);
       popupAdd.form.reset();
       formAddValidator.disableButton();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupEdit.renderLoading(false);
     });
 }
 
@@ -108,35 +114,61 @@ function handleDeleteClick(thisCard) {
 }
 
 function handleDeleteSubmit(thisCard) {
-  api.deleteCard(thisCard._id);
-  thisCard.deleteCard();
-  popupDelete.close();
+  api
+    .deleteCard(thisCard.id)
+    .then(() => {
+      thisCard.deleteCard();
+      popupDelete.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function handleAvatarSubmit(obj) {
   popupAvatar.renderLoading(true);
-  avatar.src = obj.link;
   api
     .updateCurrentAvatar(
       JSON.stringify({
         avatar: obj.link,
       })
     )
-    .then(() => {
+    .then((res) => {
+      userInfo.setUserInfo(res);
       popupAvatar.close();
-      popupAvatar.renderLoading(false);
       popupAvatar.form.reset();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAvatar.renderLoading(false);
     });
 }
 
 //Check state of isLiked in the server and toggle like state in the API
 function toggleServerLike(thisCard) {
-  if (!thisCard._isLiked) {
-    api.putLike(thisCard._id);
+  if (!thisCard.isLiked) {
+    api
+      .putLike(thisCard.id)
+      .then(() => {
+        thisCard.isLiked = !thisCard.isLiked;
+        thisCard.toggleLike();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
-    api.deleteLike(thisCard._id);
+    api
+      .deleteLike(thisCard.id)
+      .then(() => {
+        thisCard.isLiked = !thisCard.isLiked;
+        thisCard.toggleLike();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  thisCard._isLiked = !thisCard._isLiked;
 }
 
 //Fills edit popup inputs according to profile info
@@ -148,15 +180,17 @@ function fillProfileInputs(obj) {
 //               LOADING/REFRESH                   //
 
 //Check that both request are fulfilled, then add info and cards from API to display
-
-api.checkPromises().then(([userProfile, userCards]) => {
-  userInfo.setUserInfo(userProfile);
-  avatar.src = userProfile.avatar;
-
-  userCards.forEach((item) => {
-    sectionCard.addItem(item);
+api
+  .getInitialData()
+  .then(([userProfile, userCards]) => {
+    userInfo.setUserInfo(userProfile);
+    userCards.forEach((item) => {
+      sectionCard.addItem(sectionCard.renderItems(item));
+    });
+  })
+  .catch((err) => {
+    console.log(err);
   });
-});
 
 //Enable validation
 formEditValidator.enableValidation();
