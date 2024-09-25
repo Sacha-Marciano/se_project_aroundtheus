@@ -43,29 +43,23 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseURL}/cards/${cardId}`, {
+    return this._request(`${this._baseURL}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      return this._checkResponse(res);
     });
   }
 
   putLike(cardId) {
-    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
+    return this._request(`${this._baseURL}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => {
-      return this._checkResponse(res);
     });
   }
 
   deleteLike(cardId) {
-    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
+    return this._request(`${this._baseURL}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      return this._checkResponse(res);
     });
   }
 
