@@ -105,7 +105,7 @@ function handleDeleteSubmit(thisCard) {
     });
   }
 
-  handleSubmits(makeRequest, popupDelete);
+  handleSubmits(makeRequest, popupDelete, "Deleting...");
 }
 
 function handleAvatarSubmit(obj) {
