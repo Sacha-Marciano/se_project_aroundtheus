@@ -8,7 +8,6 @@ class PopupWithImage extends Popup {
   }
 
   open(data) {
-    //reference is an object with name and link (like initialcards)
     this._image.src = data._link;
     this._image.alt = data._name;
     this._modalTitle.textContent = data._name;

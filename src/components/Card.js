@@ -1,13 +1,23 @@
 class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick,
+    toggleServerLike
+  ) {
     this._name = data.name;
     this._link = data.link;
+    this.id = data._id;
+    this.isLiked = data.isLiked;
     this._template = cardSelector;
     this._handleImageClick = handleImageClick;
     this._newCard = document
       .querySelector(this._template)
       .content.querySelector(".card")
       .cloneNode(true);
+    this._handleDeleteClick = handleDeleteClick;
+    this._toggleServerLike = toggleServerLike;
   }
 
   renderCard() {
@@ -23,7 +33,7 @@ class Card {
     this._cardNameElement.textContent = this._name;
 
     this._setEventListeners();
-
+    this.toggleLike();
     return this._newCard;
   }
 
@@ -34,20 +44,24 @@ class Card {
 
     this._cardLikeElement.addEventListener("click", (evt) => {
       evt.stopPropagation();
-      this._toggleLike();
+      this._toggleServerLike(this);
     });
 
     this._cardTrashElement.addEventListener("click", (evt) => {
       evt.stopPropagation();
-      this._deleteCard();
+      this._handleDeleteClick(this);
     });
   }
 
-  _toggleLike() {
-    this._cardLikeElement.classList.toggle("card__like-button_liked");
+  toggleLike() {
+    if (this.isLiked) {
+      this._cardLikeElement.classList.add("card__like-button_liked");
+    } else {
+      this._cardLikeElement.classList.remove("card__like-button_liked");
+    }
   }
 
-  _deleteCard() {
+  deleteCard() {
     this._newCard.remove();
   }
 }

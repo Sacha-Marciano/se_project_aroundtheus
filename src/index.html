@@ -22,18 +22,17 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src='<%= require("./images/Jaques_image.svg")%>'
-            alt="Jacques Cousteau image"
-            class="profile__image"
-          />
+          <div class="image__container">
+          <img src="" alt="Profile image" class="profile__image" />
+          <img src='<%= require("./images/EditButton.svg")%>' alt="Edit logo" class="profile__image_type_overlay"/>
+        </div>
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button
               type="button"
               class="profile__button profile__button_type_edit"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             type="button"
@@ -95,7 +94,7 @@
             type="text"
             class="modal__input"
             placeholder="Description"
-            name="description"
+            name="about"
             minlength="2"
             maxlength="400"
             required
@@ -134,7 +133,7 @@
             class="modal__input"
             placeholder="Title"
             name="name"
-            minlength="1"
+            minlength="2"
             maxlength="300"
             required
           />
@@ -175,6 +174,65 @@
         <img class="modal__image" src="" alt="" />
         <p class="modal__image-title"></p>
       </div>
+    </div>
+    <div class="modal" id="delete-modal-id">
+      <form
+        class="modal__container"
+        id="delete-container-id"
+        name="delete-container"
+        novalidate
+      >
+        <button
+          type="button"
+          class="modal__button modal__button_type_close"
+          id="close-delete-id"
+        ></button>
+        <h2 class="modal__title">Are you sure?</h2>
+        <button
+          type="submit"
+          class="modal__button modal__button_type_submit"
+          id="delete-submit-id"
+        >
+          Yes
+        </button>
+      </form>
+    </div>
+    <div class="modal" id="avatar-modal-id">
+      <form
+        class="modal__container"
+        id="avatar-container-id"
+        name="avatar-container"
+        novalidate
+      >
+        <button
+          type="button"
+          class="modal__button modal__button_type_close"
+          id="close-avatar-id"
+        ></button>
+        <h2 class="modal__title">Change profile picture</h2>
+        </fieldset>
+        <fieldset class="modal__fieldset">
+          <label for="image-link-id" class="modal__label"></label>
+          <input
+            id="image-link-id"
+            type="url"
+            class="modal__input"
+            placeholder="Image link"
+            name="link"
+            required
+          />
+          <span
+            class="modal__input-span modal__input-error image-link-id-error"
+          ></span>
+        </fieldset>
+        <button
+          type="submit"
+          class="modal__button modal__button_type_submit"
+          id="add-submit-id"
+        >
+         Save
+        </button>
+      </form>
     </div>
   </body>
 </html>
