@@ -128,6 +128,7 @@ function handleDeleteClick(thisCard) {
 
 //Check state of isLiked in the server and toggle like state in the API
 function toggleServerLike(thisCard) {
+  console.log(thisCard);
   if (!thisCard.isLiked) {
     api
       .putLike(thisCard.id)
