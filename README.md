@@ -1,59 +1,144 @@
-- [Link to the page](https://sacha-marciano.github.io/se_project_aroundtheus/)
+# Around The U.S.
 
-# Project 3: Around The U.S.
-
-This is my 3rd project. It combines everything I learned from the past two projects and is the first project I build entirely from scratch (and a figma brief)
-
-## Updates
-
-Old to new:
-
-- "Initial commit": The files were upload to a git repo and cloned localy
-- "Desktop structure": HTML structure was built and styles for desktop viewport created.
-- "Tablet and phone browser support": Page was styled according to figma brief for phone and tablet viewports
-- "Self revision and README.md": Revision of the code and fixing of details, creation of the README.md file
-- "Like button hover fix": fix of the button when hovered
-- "Fixes after review": Implemented all of reviewer corrections
-- "README.md update and video add" : Made a few corrections and added the link of the video to the README.md
-- "JavaScript first implementation !": Implemented my first JavaScript code : render an array of cards
-- "Final stage submission": Added a popup window and make it open/close with a click
-- "Feature Add and like cards": Now able to add cards with any name or URL and like them
-- "Feature: Delete button and image modal": Now you can delete cards (even the initial ones !) and a click on the image will show it to its original size
-- "Revision before submit and README": Fixes before submit and updated this README
-- "OOP refining": Create and use classes for the first time !
-- "Fixes after review": fixes after project 7 review
-- "OOP part 2 and README": Added more classes.Now my index.js is way shorter and more readable, updated this README"
-- "Webpack implementation": Build, bundle and transcompile using webpack and plugins.
-
-## Project description
-
-This is the unofficial page of Jacques Cousteau the famous french explorer. It showcases the most beautiful pictures of the places the adventurer went.
-The project was built from a Figma brief with the following skills:
-
-- Semantic HTML
-- CSS styles
-- Flexbox
-- Grid Layout
-- Flat BEM file structure and naming
-- Media queries
+[Live Demo](https://sacha-marciano.github.io/se_project_aroundtheus/)
 
 [![Video Website](https://img.youtube.com/vi/rsA7WrYDE7s/0.jpg)](https://www.youtube.com/watch?v=rsA7WrYDE7s)
 
-- [Here is a link to the explanatory video](https://www.youtube.com/watch?v=rsA7WrYDE7s)
+[Explanatory Video](https://www.youtube.com/watch?v=rsA7WrYDE7s)
 
-## Project look
+---
 
-**Figma brief**
+## Overview
 
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+**Around The U.S.** is a responsive, interactive web application inspired by the adventures of Jacques Cousteau. Users can view, add, like, and delete beautiful landscape cards, as well as edit their profile and avatar. The project demonstrates modern front-end development practices, including modular JavaScript (OOP), Webpack bundling, and API integration.
 
+---
 
-## Instruction to deploy
+## Features
 
-The page is supported by all viewports
-The page is supported by all browsers
-Best experience on Chrome browser
-- [Link to the page](https://sacha-marciano.github.io/se_project_aroundtheus/)
-## Plan on improving project
+- Responsive design for desktop, tablet, and mobile
+- User profile editing (name, description, avatar)
+- Add new cards with title and image URL
+- Like/unlike cards (with server sync)
+- Delete cards (with confirmation)
+- View images in a modal popup
+- Form validation with real-time feedback
+- Persistent data via REST API
+- Accessible and semantic HTML
 
--Add back-end
+---
+
+## Technologies Used
+
+- **JavaScript (ES6+)**: Modular, OOP architecture
+- **HTML5 & CSS3**: BEM methodology, Flexbox, Grid, custom modals
+- **Webpack**: Bundling, asset management, dev server
+- **Babel**: ES6+ transpilation
+- **PostCSS**: Autoprefixer, cssnano for optimization
+- **REST API**: CRUD operations for user and cards
+- **Figma**: [Design brief](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+
+---
+
+## Project Structure
+
+```
+se_project_aroundtheus(mine)/
+├── src/
+│   ├── blocks/         # BEM CSS blocks (body, card, modal, etc.)
+│   ├── components/     # JS classes (Card, Popup, Section, etc.)
+│   ├── images/         # SVGs, PNGs, favicon, etc.
+│   ├── pages/          # Entry JS and CSS
+│   ├── utils/          # API and constants
+│   ├── vendor/         # Fonts and normalize.css
+│   └── index.html      # Main HTML file
+├── package.json        # Scripts and dependencies
+├── webpack.config.js   # Webpack configuration
+├── postcss.config.js   # PostCSS plugins
+├── babel.config.js     # Babel presets
+└── README.md           # Project documentation
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v14+ recommended)
+- [npm](https://www.npmjs.com/)
+
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/sacha-marciano/se_project_aroundtheus.git
+   cd se_project_aroundtheus
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+### Development
+- **Start the dev server:**
+  ```bash
+  npm run dev
+  ```
+  The app will open at [http://localhost:8080](http://localhost:8080).
+
+### Build for Production
+- **Build the app:**
+  ```bash
+  npm run build
+  ```
+  Output will be in the `dist/` folder.
+
+### Deployment
+- **Deploy to GitHub Pages:**
+  ```bash
+  npm run deploy
+  ```
+
+---
+
+## API
+This project uses a REST API for all user and card operations. The API base URL is:
+```
+https://around-api.en.tripleten-services.com/v1
+```
+
+Endpoints include:
+- `GET /users/me` — fetch user info
+- `PATCH /users/me` — update user info
+- `PATCH /users/me/avatar` — update avatar
+- `GET /cards` — fetch all cards
+- `POST /cards` — add a new card
+- `DELETE /cards/:id` — delete a card
+- `PUT /cards/:id/likes` — like a card
+- `DELETE /cards/:id/likes` — unlike a card
+
+---
+
+## Styling & Assets
+- **Fonts:** Inter (Regular, Medium, Black)
+- **CSS:** BEM, responsive, modular, normalized
+- **Assets:** SVG icons for UI, sample images for cards
+
+---
+
+## Credits
+- Developed by Sacha M. Marciano
+- Design: [Figma brief](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+- API: TripleTen demo API
+
+---
+
+## Future Improvements
+- Add user authentication
+- Enable comments on cards
+- Improve accessibility (a11y)
+- Add backend for persistent user data
+
+---
+
+## License
+This project is licensed under the ISC License.
